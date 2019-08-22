@@ -25,11 +25,13 @@ class EmmedyH5PExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
         $loader->load('services.yml');
 
+        /** @var $definition \Symfony\Component\DependencyInjection\Definition **/
         $definition = $container->getDefinition("emmedy_h5p.core");
-        $definition->replaceArgument(1, $container->getParameter('kernel.project_dir') . '/' . $config['web_dir'] . '/' . $config["storage_dir"]);
-        $definition->replaceArgument(2, '/');
+
+        $definition->setArgument(1, $container->getParameter('kernel.project_dir') . '/' . $config['web_dir'] . '/' . $config["storage_dir"]);
+        $definition->setArgument(2, '/');
 
         $definition = $container->getDefinition("emmedy_h5p.options");
-        $definition->replaceArgument(0, $config);
+        $definition->setArgument(0, $config);
     }
 }

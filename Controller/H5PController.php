@@ -3,6 +3,7 @@
 namespace Emmedy\H5PBundle\Controller;
 
 
+use Emmedy\H5PBundle\Core\H5PIntegration;
 use Emmedy\H5PBundle\Editor\Utilities;
 use Emmedy\H5PBundle\Entity\Content;
 use Emmedy\H5PBundle\Form\Type\H5pType;
@@ -58,9 +59,9 @@ class H5PController extends Controller
     /**
      * @Route("new")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request, H5PIntegration $h5PIntegration)
     {
-        return $this->handleRequest($request);
+        return $this->handleRequest($request,$h5PIntegration );
     }
 
     /**
@@ -71,7 +72,7 @@ class H5PController extends Controller
         return $this->handleRequest($request, $content);
     }
 
-    private function handleRequest(Request $request, Content $content = null)
+    private function handleRequest(Request $request,H5PIntegration $h5PIntegration, Content $content = null)
     {
         $formData = null;
         if ($content) {
@@ -80,14 +81,14 @@ class H5PController extends Controller
         }
         $form = $this->createForm(H5pType::class, $formData);
         $form->handleRequest($request);
-        if ($form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $data = $form->getData();
             $contentId = $this->get('emmedy_h5p.library_storage')->storeLibraryData($data['library'], $data['parameters'], $content);
 
             return $this->redirectToRoute('emmedy_h5p_h5p_show', ['content' => $contentId]);
         }
-        $h5pIntegration = $this->get('emmedy_h5p.integration')->getEditorIntegrationSettings($content ? $content->getId() : null);
+        $h5pIntegration = $h5PIntegration->getEditorIntegrationSettings($content ? $content->getId() : null);
 
         return $this->render('@EmmedyH5P/edit.html.twig', ['form' => $form->createView(), 'h5pIntegration' => $h5pIntegration, 'h5pCoreTranslations' => $this->get('emmedy_h5p.integration')->getTranslationFilePath()]);
     }

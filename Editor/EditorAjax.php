@@ -4,6 +4,7 @@ namespace Emmedy\H5PBundle\Editor;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 
 class EditorAjax implements \H5PEditorAjaxInterface
@@ -22,7 +23,7 @@ class EditorAjax implements \H5PEditorAjaxInterface
      * @param EntityManager $manager
      * @param TokenStorageInterface $tokenStorage
      */
-    public function __construct(EntityManager $manager, TokenStorageInterface $tokenStorage)
+    public function __construct(EntityManagerInterface $manager, TokenStorageInterface $tokenStorage)
     {
         $this->manager = $manager;
         $this->tokenStorage = $tokenStorage;

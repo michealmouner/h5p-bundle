@@ -4,6 +4,7 @@ namespace Emmedy\H5PBundle\Editor;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Emmedy\H5PBundle\Entity\Content;
 
 class LibraryStorage
@@ -27,7 +28,7 @@ class LibraryStorage
      * @param \H5peditor $editor
      * @param EntityManager $entityManager
      */
-    public function __construct(\H5PCore $core, \H5peditor $editor, EntityManager $entityManager)
+    public function __construct(\H5PCore $core, \H5peditor $editor, EntityManagerInterface $entityManager)
     {
         $this->core = $core;
         $this->editor = $editor;

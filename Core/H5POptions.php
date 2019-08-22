@@ -4,6 +4,7 @@ namespace Emmedy\H5PBundle\Core;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Emmedy\H5PBundle\Entity\Option;
 
 class H5POptions
@@ -31,7 +32,7 @@ class H5POptions
      * @param $projectRootDir
      * @param EntityManager $manager
      */
-    public function __construct(array $config, $projectRootDir, EntityManager $manager)
+    public function __construct(?array $config, $projectRootDir, EntityManagerInterface $manager)
     {
         $this->config = $config;
         $this->projectRootDir = $projectRootDir;

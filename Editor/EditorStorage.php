@@ -4,6 +4,7 @@ namespace Emmedy\H5PBundle\Editor;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Emmedy\H5PBundle\Core\H5POptions;
 use Emmedy\H5PBundle\Event\H5PEvents;
 use Emmedy\H5PBundle\Event\LibraryFileEvent;
@@ -52,7 +53,7 @@ class EditorStorage implements \H5peditorStorage
      * @param EntityManager $entityManager
      * @param EventDispatcherInterface $eventDispatcher
      */
-    public function __construct(H5POptions $options, Filesystem $filesystem, AuthorizationCheckerInterface $authorizationChecker, EntityManager $entityManager, EventDispatcherInterface $eventDispatcher)
+    public function __construct(H5POptions $options, Filesystem $filesystem, AuthorizationCheckerInterface $authorizationChecker, EntityManagerInterface $entityManager, EventDispatcherInterface $eventDispatcher)
     {
         $this->options = $options;
         $this->filesystem = $filesystem;

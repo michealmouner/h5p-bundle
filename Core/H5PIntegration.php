@@ -4,6 +4,7 @@ namespace Emmedy\H5PBundle\Core;
 
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Emmedy\H5PBundle\Entity\Content;
 use Symfony\Component\Asset\Packages;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -57,7 +58,7 @@ class H5PIntegration
      * @param Packages $packages
      * @param \H5PContentValidator $contentValidator
      */
-    public function __construct(\H5PCore $core, H5POptions $options, TokenStorageInterface $tokenStorage, EntityManager $entityManager, RouterInterface $router, RequestStack $requestStack, Packages $packages, \H5PContentValidator $contentValidator)
+    public function __construct(\H5PCore $core, H5POptions $options, TokenStorageInterface $tokenStorage, EntityManagerInterface $entityManager, RouterInterface $router, RequestStack $requestStack, Packages $packages, \H5PContentValidator $contentValidator)
     {
         $this->core = $core;
         $this->options = $options;

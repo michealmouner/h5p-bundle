@@ -3,6 +3,7 @@
 namespace Emmedy\H5PBundle\Core;
 
 use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
 use Emmedy\H5PBundle\DependencyInjection\Configuration;
 use Emmedy\H5PBundle\Editor\EditorStorage;
 use Emmedy\H5PBundle\Entity\Content;
@@ -19,6 +20,7 @@ use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Session\Flash\FlashBagInterface;
 use Symfony\Component\HttpKernel\Kernel;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Security\Core\Authorization\AuthorizationCheckerInterface;
 
@@ -71,11 +73,11 @@ class H5PSymfony implements \H5PFrameworkInterface
     public function __construct(H5POptions $options,
                                 EditorStorage $editorStorage,
                                 TokenStorageInterface $tokenStorage,
-                                EntityManager $manager,
+                                EntityManagerInterface $manager,
                                 FlashBagInterface $flashBag,
                                 AuthorizationCheckerInterface $authorizationChecker,
                                 EventDispatcherInterface $eventDispatcher,
-                                Router $router)
+                                RouterInterface $router)
     {
         $this->options = $options;
         $this->editorStorage = $editorStorage;
